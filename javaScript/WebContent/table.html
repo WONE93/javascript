@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>table.html</title>
+	<style>
+		section {
+			position: relative;
+			left: 15%;
+			top: 50px;
+			width: 60%;
+			background-color: aquamarine;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<article>
+			<table border="1" style="width:50%">
+				<!--<table border="1" style="text-align:center; width:50%;">  -->
+
+				<thead>
+					<tr>
+						<th rowspan="2">이름</th>
+						<th align="center">나이</th>
+					</tr>
+					<tr align="center" style="background-color: #eac5f1; width: 40%;">
+						<th>전화</th>
+					</tr>
+
+				</thead>
+				<tbody>
+
+					<tr>
+						<td rowspan=2>이찌원</td>
+						<td>3짤</td>
+					</tr>
+					<tr>
+						<td> 010-123-1234</td>
+					</tr>
+					<tr>
+						<td rowspan="2">서짱가</td>
+						<td>7짤</td>
+					</tr>
+					<tr>
+						<td>전화번호없어용</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2">colspan, rowspan 연습
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+			<br>
+			<br>
+			<table border="1" style="width:300px">
+				<tr align="center" style="background-color:#eac5f1">
+					<td>이름</td>
+					<td colspan="2">연락처</td>
+				</tr>
+				<tr>
+					<td>서혜원</td>
+					<td>010-2126-5370</td>
+					<td>성서</td>
+				</tr>
+
+
+		</article>
+	</section>
+</body>
+
+</html>
