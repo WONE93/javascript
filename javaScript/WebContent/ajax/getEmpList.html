@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getEmpList</title>
+<style>
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+         tr td, tr th {
+            border: 1px solid #444;
+            padding: 5px 10px
+        }
+    </style>
+</head>
+<body>
+  <div id ="show"></div>
+  
+  <script>
+     var xhtp = new XMLHttpRequest();
+     xhtp.onreadystatechange = function(){
+        if(xhtp.readyState == 4 && xhtp.status ==200){
+           var parsedData = JSON.parse(xhtp.responseText)
+           showPage(parsedData);
+        }
+     }
+     xhtp.open("get", "../GetEmpListServlet");
+     xhtp.send();
+     
+    function showPage(datas) {
+        var $tr, $td, $th, $text, $table;
+        var $titles = ["empId", "firstName", "lastName"];
+        
+        $table = document.createElement("table");
+        
+        $tr = document.createElement("tr");
+
+       
+       for (o of $titles) {
+          $th = document.createElement("th");
+           $text = document.createTextNode(o);
+           $th.appendChild($text);
+            $tr.appendChild($th);
+       }
+       
+        $table.appendChild($tr); 
+        
+        datas.forEach(function(data){
+           
+           $tr = document.createElement("tr");
+
+            for (o of $titles) {
+               $text = document.createTextNode(data[o]);
+               $td = document.createElement("td");
+               $td.appendChild($text);
+               $tr.appendChild($td);
+            } 
+            $table.appendChild($tr); 
+            
+        });
+        document.getElementById("show").appendChild($table);
+       
+     } 
+     
+  </script>
+</body>
+</html>
