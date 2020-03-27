@@ -11,6 +11,7 @@ import java.util.List;
 
 public class EmpDAO {
 	Connection conn = null;
+	
 	public EmpDAO() {
 		String user = "hr";
 		String pass = "hr";
@@ -26,6 +27,25 @@ public class EmpDAO {
 		}
 				
 	}
+	
+	public void insertEmp(Employee emp) {
+		String sql = "insert into emp(employee_id, last_name, email, hire_date, job_id) "
+				   + " values((select max(employee_id)+1 from emp),"
+				   +"?, ?, sysdate, ?)"; 
+		// ?에는 사용자 입력값 , 라스트네임,이메일,잡아이드 순서
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, emp.getLastName());
+			pstmt.setString(2, emp.getEmail());
+			pstmt.setString(3, emp.getJobId());
+			int iCnt = pstmt.executeUpdate();
+			System.out.println( iCnt + "건 입력.");
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} // End of insert 리턴값없음
+	
 	public List<Employee>  getEmpList() {
 		String sql = "select * from employees";
 		List<Employee> list = new ArrayList<>();
