@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>domExample.html</title>
+</head>
+<body>
+    <button id="add">Add row</button>
+    <ul id="parentList">
+        <li>One</li>
+        <li>Two</li>
+    </ul>
+    <script>
+        var lis = document.querySelectorAll("ul li");
+       
+       //lis의 각각의 태그에 펑션을 실행하겠다     
+        lis.forEach(function(a, b, c){     
+            a.addEventListener("mouseover", function(){
+                a.style.backgroundColor = "green";
+            });
+
+            a.addEventListener("mouseout", function(){
+                a.style.backgroundColor = "red";
+            });
+
+            a.addEventListener("click", function(){
+                var inputs = document.querySelectorAll("#parentList input");
+                inputs.forEach(function(o){
+                    o.parentNode.remove();  //li-> input
+
+                });
+
+                lis.forEach(function(o){
+                    if(o.style.display == "none")
+                       o.style.display = "";
+                });
+                var text = a.innerHTML;
+                $li = document.createElement('li');
+                $input = document.createElement('input');
+                $input.value = text;
+                $li.appendChild($input);
+                a.after($li);
+
+                var btn = document.createElement('button');
+                $input.after(btn);
+                var $text = document.createTextNode("click");
+                btn.appendChild($text);
+                a.style.display = "none";
+
+              
+                
+
+
+                //지워니방법
+                // var text = a.innerHTML;
+                // var $li = document.createElement('li');
+                // var $input = document.createElement('input');
+               
+
+                // $input.value=text;
+                // $li.appendChild($input);
+                // a.style.display='none';
+                // a.after($li)
+                
+                // var $button = document.createElement('button');
+                // $input.after($button);
+                // var $text =document.createTextNode("클릭");
+                // $button.appendChild($text);   // 4줄 클릭버튼 만들기
+
+                // $button.addEventListener("click", function(){
+                //     var $li = document.createElement('li');
+                //     var $inputText =document.createTextNode($input.value);
+                //     $li.appendChild($inputText);
+                //     a.after($li);
+
+                //     a.style.display= 'block';
+                //     this.parentElement.style.display='none';
+
+
+
+                
+
+                
+             
+            });
+
+        });
+
+        var numbers = ["Three", "Four", "Five"];
+        var btn = document.getElementById("add");
+        
+        
+        console.log(btn)
+        btn.innerHTML = "한줄 추가";
+        var numbersIdx = 0;
+        btn.addEventListener("click", function(e) {
+            console.log(e)
+
+            var $li = document.createElement("li")
+            $li.addEventListener("mouseover", function(a){
+                a.target.style.backgroundColor = '#333';
+            })
+            $li.addEventListener("mouseout", function(a){
+                a.target.style.backgroundColor = "orange";
+            })
+
+
+            var $text = document.createTextNode(numbers[numbersIdx]);
+            $li.appendChild($text);
+
+            numbersIdx++;
+
+            document.getElementById('parentList').appendChild($li);
+        })
+        // or btn.onclick = function() { }
+
+        
+    </script>
+</body>
+</html>

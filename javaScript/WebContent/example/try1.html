@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td class="name">p</td>
+            <td class="age">16</td>
+        </tr>
+        <tr>
+            <td class="name">p1</td>
+            <td class="age">16</td>
+        </tr>
+        <tr>
+            <td class="name">p2</td>
+            <td class="age">16</td>
+        </tr>
+    </table>
+
+
+    <script>
+        var names = document.querySelectorAll(".name");
+        var ages = document.querySelectorAll(".age");
+        var persons = document.querySelectorAll("tr");
+        console.log(persons);
+        persons.forEach(function(t){
+            console.log(t.children[1].innerText);
+        })  // ->[]안의 숫자는 매개값
+
+        console.log(names); // 클래스가 네임인 모든 오브젝트를 네임즈에 담음
+        names.forEach(function(o){
+            console.log(o);
+        })
+        ages.forEach(function(o){
+            console.log(o);
+        });
+
+        var sum=0;
+        ages.forEach(function(a, b, c){
+            console.log(a);  //->  a b c 의 값이 뭔지 각각 확인
+            sum += parseInt(o.innerHTML);
+        })
+
+        //way2
+        ages.forEach(function(o){
+            console.log("=======?? ")
+            console.log(o.innerHTML); // o의값 에이지의값만 나옴  
+            sum += parseInt(o.innerHTML); // 파스인트는 합계를 숫자로 보이게 해줌
+        })
+        console.log("===sum의값")
+        console.log(sum);
+
+        //배열공부
+        // var text = "Hello World";
+        // console.log(text);
+
+        // // var p = prompt("나이가 얼마입니까?")  // 변수는 값을  받아서 저장하는 역할을 함 
+        // // console.log(p);
+
+        // var person = { // {}안에는 오브젝트값저장
+        //     name: "p",
+        //     age: 16
+        // }
+
+        // console.log("====field=====")      
+        // for(f in person){
+        //     console.log(f);
+        // }  // 필드 확인하기
+
+        // var person1 = { // {}안에는 오브젝트값저장
+        //     name: "p1",
+        //     age: 20
+        // }
+        // var person2 = { // {}안에는 오브젝트값저장
+        //     name: "p2",
+        //     age: 21
+        // }
+        // console.log(person.name);  
+        // console.log(person["age"]);
+        // console.log("====================")
+        // var persons = [person, person1, person2]
+        // // persons.push(person3) // push기능?
+        // for(p of  persons){
+        //     // console.log(p.name+ "," + p["age"]);
+        //     for(f in p){
+        //         // console.log(p[f]);
+        //         console.log(f+"의 값: "+p[f]);
+        //     }
+           
+        // }
+
+
+    </script>
+</body>
+</html>

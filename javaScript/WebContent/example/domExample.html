@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>domExample.html</title>
+</head>
+<body>
+    <button id="add">Add row</button>
+    <ul id="parentList">
+        <li style="display:none">One</li>
+        <li>one-1</li>
+        <li>Two</li>
+    </ul>
+    <script>
+        var lis = document.querySelectorAll("ul li");
+       
+       //lis의 각각의 태그에 펑션을 실행하겠다     
+        lis.forEach(function(a, b, c){     
+            a.addEventListener("mouseover", function(){
+                a.style.backgroundColor = "green";
+            });
+
+            a.addEventListener("mouseout", function(){
+                a.style.backgroundColor = "red";
+            });
+
+            a.addEventListener("click", function(){
+                var text = a.innerHTML;
+                $li = document.createElement("li");
+                $text = document.createTextNode(text + "-1");
+                $li.appendChild($text);
+                a.after($li)
+                // document.getElementById("parentList").appendChild($li);
+                a.style.display = "none";
+            });
+
+        });
+
+        var numbers = ["Three", "Four", "Five"];
+        var btn = document.getElementById("add");
+        
+        console.log(btn)
+        btn.innerHTML = "한줄 추가";
+        var numbersIdx = 0;
+        btn.addEventListener("click", function(e) {
+            console.log(e)
+
+            var $li = document.createElement("li")
+            $li.addEventListener("mouseover", function(a){
+                a.target.style.backgroundColor = '#333';
+            })
+            $li.addEventListener("mouseout", function(a){
+                a.target.style.backgroundColor = "orange";
+            })
+
+
+            var $text = document.createTextNode(numbers[numbersIdx]);
+            $li.appendChild($text);
+
+            numbersIdx++;
+
+            document.getElementById('parentList').appendChild($li);
+        })
+        // or btn.onclick = function() { }
+
+        
+    </script>
+</body>
+</html>

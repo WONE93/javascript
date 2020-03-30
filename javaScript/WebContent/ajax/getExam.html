@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getEmpList</title>
+<style>
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+         tr td, tr th {
+            border: 1px solid #444;
+            padding: 5px 10px
+        }
+    </style>
+</head>
+<body>
+  <div id ="show"></div>
+  
+  <table id ="tbl"></table>
+  <script>
+     var xhtp = new XMLHttpRequest();
+     xhtp.onreadystatechange = function(){
+        //console.log("readyState: " + xhtp.readyState + ", status: " + xhtp.status);
+        if(xhtp.readyState == 4 && xhtp.status ==200){
+           var parsedData = JSON.parse(xhtp.responseText)
+           /* JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 
+           그 결과에서 JavaScript 값이나 객체를 생성합니다 */
+           console.log(xhtp.responseText); //parsing전 데이터 
+           console.log(parsedData); //parsing 후 데이터 => array로 나타난다
+           showPage(parsedData);
+           //var $tag = "<ul>";
+           
+           //for(var i=0; i <parsedData.length; i++){
+           //   $tag += "<li>" + parsedData[i].id + " - "
+         //      +parsedData[i].first_name + " - "
+         //      + parsedData[i].last_name + "</li>";
+           //}
+           //$tag += "<ul>";
+           //document.getElementById("show").innerHTML = $tag;
+        }
+     }
+    
+     xhtp.open("get", "../GetEmpListServlet");
+     xhtp.send();
+     
+     /* function showPage(datas){
+        var $tag = "<table>";
+        
+           $tag += "<tr><th>" + "id" + "</th><th>"
+            + "first_name" + "</th><th>"
+            + "last_name" + "</th></tr>";
+      
+         
+      for(var i=0; i <datas.length; i++){
+         $tag += "<tr><td>" + datas[i].empId + "</td><td>"
+            + datas[i].firstName + "</td><td>"
+            + datas[i].lastName + "</td></tr>";
+      }
+      $tag += "</table>";
+      document.getElementById("show").innerHTML = $tag;
+      
+      
+     } */
+    /* function showPage(a) {
+        var $tr, $td, $text, $table;
+        
+        $table = document.getElementById("tbl");
+        $table.setAttribute("border", 1);
+        
+        for(obj of a) {
+           $tr = document.createElement("tr");
+           for (f in obj) {
+              $text = document.createTextNode(obj[f]);
+                  $td = document.createElement("td");
+                  $td.appendChild($text);
+                  $tr.appendChild($td);
+           } $table.appendChild($tr);
+        }
+     } */
+     
+     function showPage(datas) {
+         var $tr, $td, $th, $text, $table;
+         var $titles = ["empId", "firstName", "lastName"];
+         
+         $table = document.createElement("table");
+         
+         $tr = document.createElement("tr");
+        
+     
+        for (o of $titles) {
+           $th = document.createElement("th");
+            $text = document.createTextNode(o);
+            $th.appendChild($text);
+             $tr.appendChild($th);
+        }
+        
+         $table.appendChild($tr); 
+         
+         datas.forEach(function(data){
+            
+            $tr = document.createElement("tr");
+             
+           /*  $titles.forEach(function(f){
+               $text = document.createTextNode(datas[f]);
+                 $td = document.createElement("td");
+                 $td.appendChild($text);
+                 $tr.appendChild($td);
+            }) */
+             
+             for (o of $titles) {
+                $text = document.createTextNode(data[o]);
+                $td = document.createElement("td");
+                $td.appendChild($text);
+                $tr.appendChild($td);
+             } 
+             $table.appendChild($tr); 
+             
+         });
+         document.getElementById("show").appendChild($table);
+        
+      } 
+      
+     
+      /* function showPage(a) {
+         var $tr, $td, $text, $table;
+         
+         $table = document.getElementById("tbl");
+           
+         a.forEach(function (o) {
+            $tr = document.createElement("tr");
+            
+            $text = document.createTextNode(o);
+             
+            $td.appendChild($text);
+             $tr.appendChild($td);
+           
+         }
+         $table.appendChild($tr);
+         document.body.appendChild($table);
+      } */
+  </script>
+</body>
+</html>
