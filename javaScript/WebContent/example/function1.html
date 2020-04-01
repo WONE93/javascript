@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function1.html</title>
+    <script src="function1.js"></script>
+    <script src="function2.js"></script>
+    <script src="function3.js"></script>
+
+
+</head>
+
+<body>
+    <div id="galleryZone">
+        <p><img id="photo" src="../images/images1.jpg" alt="" height="500px;"></p>
+        <p><button onclick="gallary(0)">이전</button></p>
+        <p><button onclick="gallary(1)">다음</button></p>
+    </div>
+    <script>
+        var fnc = "function";
+        function fnc1(){
+            return 10 + 20;
+        }
+        var fnc2 = function(num1, num2){
+            return num1;
+        }
+        // console.log(fnc1(10));
+        function fnc3(){
+            //console.log(arguments.length);
+            var sum = 0;
+            for(var i=0; i<arguments.length; i++){
+                sum += arguments[i];
+            }
+            return sum;
+            console.log("after return")
+        }
+        var sum = fnc3(1,2,3,4,5);
+        // console.log(sum)
+    </script>
+</body>
+</html>

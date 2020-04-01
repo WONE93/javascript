@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object.html</title>
+    <script src="function3.js"></script>
+</head>
+<body>
+    <p id="show"></p>
+    <button onclick="clearInterval(auto1)">Stop</button>
+    <button onclick=" goPage('www.naver.com')">click</button>
+    <script>
+        function goPage(newP){
+            location.href = 'https://' + newP;
+        }
+
+        // setTimeout(function() {
+        //     alert("Hi");
+        // },3000);  // 3초 뒤에 HI 라는 알림창이 뜸
+
+        var auto1 = setInterval (function() {
+            var now = new Date();
+            document.getElementById('show').innerHTML = now;
+        }, 1000);  // 일정한 시간 간격으로 함수 호출해 코드 실행 즉 1000은 1초마다. 시간표시
+ 
+        // *************************************************
+        // var result = window.confirm("확인하겠습니까?");
+        // if(result){
+        //     console.log("확인버튼을 눌렀습니다. ")
+        // }else{
+        //     console.log("취소버튼을 눌렀습니다. ")
+        // }
+        
+        var p1 = new CheckWeight("Hong", 170, 60); //w1: 생성자통해서 생성
+        var p2 = {  //w2: 괄호 안에 담아 생성
+            myName : "seo",
+            myHeight: 170,
+            myWeight: 50,
+            getInfo: function(){
+                return "이름: " + this.myName + ", 키는: " + this.myHeight;
+            }
+        }
+        
+        // console.log($today.getFullYear(), $today.getMonth(), $today.getDay());
+        // console.log(p1.myName, p1.myHeight, p1.myWeight);
+
+        var $today = new Date();
+        var nMonth = $today.getMonth(),
+        nDate = $today.getDate(),
+        nDay = $today.getDay();
+
+        document.write("<h2>오늘 날짜 정보</h2>");
+        document.write( nMonth+ " 월 <br>" );
+        document.write( nDate+ " 일 <br>" );
+        document.write( nDay+ " 요일 <br>" );
+
+        var $W = new Date(2002, 4, 31);
+        var tMonth = $W.getMonth(),
+        tDate = $W.getDate(),
+        tDay = $W.getDay();
+
+        document.write("<h2>2002 월드컵</h2>");
+        document.write( tMonth+ " 월 <br>" );
+        document.write( tDate+ " 일 <br>" );
+        document.write( tDay+ " 요일 <br>" );
+
+        document.write("<hr>")
+        var arr_1 = ["사당","교대","방배","강남"];
+        var arr_2 = ["신사","압구정","옥수"];
+
+        var result = arr_1.join("-");
+        console.log("===배열객체매서드====")
+        console.log(result);
+
+        result = arr_1.concat(arr_2); //2개의 배열을 하나의 배열로 만들어 반환
+        console.log(result);
+
+        result = arr_1.slice(1,3); //배열 1위치부터 3위치 전까지 데이터값 삭제 즉 (1~2까지)
+        console.log(result);
+
+        arr_1.sort();   // 오름차순 정렬
+        console.log(arr_1); 
+
+        arr_2.reverse(); // 베열 순서를 거꾸로
+        console.log(arr_2);
+        
+
+        document.write("<hr>")
+        console.log("==배열객체매서드2==")
+
+        var greenArr = ["교대", "방배", "강남" ];
+        var yellowArr = ["미금", "정자", "수서" ];
+        
+        greenArr.splice(2,1,"서초", "역삼"); // 2번인덱스부터 1개 값 삭제 후 그 위치에서 데이터 추가
+        console.log(greenArr);
+
+        var data1 = yellowArr.pop(); // 가장 마지막 값을 data1에 담다
+        console.log(yellowArr); 
+        console.log(data1);
+
+        var data2 = yellowArr.shift(); // 가장 앞쪽 값을 data2에 담다
+        console.log(yellowArr);
+        console.log(data2);
+
+        yellowArr.push(data2); //데이터2 값을 마지막 위치에 추가
+        console.log(yellowArr);
+
+        yellowArr.unshift(data1); // 데이터1 값을 가장 앞쪽에 추가
+        console.log(yellowArr);
+
+    </script>
+</body>
+</html>
