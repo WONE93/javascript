@@ -34,7 +34,7 @@ public class ClientExample extends Application {
 			public void run() {
 				socket = new Socket();
 				try {
-					socket.connect(new InetSocketAddress("192.168.0.50", 5001));
+					socket.connect(new InetSocketAddress("192.168.0.69", 5001));
 					Platform.runLater(() -> {
 						displayText("[연결 완료: " + socket.getRemoteSocketAddress() + "]");
 						btnConn.setText("stop");
@@ -77,9 +77,9 @@ public class ClientExample extends Application {
 	void receive() {
 		// 리시브는 언제 받을지 모르기 때문에 항상 열어둬야함
 		while (true) {
-			byte[] buf = new byte[100];
 				
 			try {
+				byte[] buf = new byte[100];
 				InputStream is = socket.getInputStream();
 				int readByte = is.read(buf);
 				if (readByte == -1) {
@@ -105,6 +105,7 @@ public class ClientExample extends Application {
 	// send()
 	void send(String data) {
 		Thread thread = new Thread() {
+//			String userDate = "[won]";
 			@Override
 			public void run() {
 				try {
@@ -161,7 +162,8 @@ public class ClientExample extends Application {
 		btnSend = new Button("send");
 		btnSend.setPrefSize(60, 30);
 		btnSend.setDisable(true);
-		btnSend.setOnAction(event -> send(txtInput.getText()) ); // "메세지 보내는 기능" 이벤트는 파라매터값
+		btnSend.setOnAction(event -> 
+			send("[지원장님]" +txtInput.getText()) ); // "메세지 보내는 기능" 이벤트는 파라매터값
 		
 		bottom.setCenter(txtInput);
 		bottom.setLeft(btnConn);
